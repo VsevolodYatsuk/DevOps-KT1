@@ -1,0 +1,14 @@
+---
+- name: Add a new user and grant permissions
+  hosts: target_server
+  become: yes
+  tasks:
+    - name: Create a new user
+      user:
+        name: new_user
+        password: "{{ 'new_user_password' | password_hash('sha512') }}"
+        state: present
+    - name: Add user to sudoers
+      copy:
+        content: "new_user ALL=(ALL) NOPASSWD: ALL"
+        dest: /etc/sudoers.d/new_user

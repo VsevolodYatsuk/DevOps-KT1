@@ -1,0 +1,13 @@
+---
+- name: Backup configuration files
+  hosts: target_server
+  become: yes
+  tasks:
+    - name: Create backup directory
+      file:
+        path: /path/to/backup
+        state: directory
+    - name: Backup configuration files
+      copy:
+        src: /etc/nginx/nginx.conf
+        dest: /path/to/backup/nginx.conf.backup

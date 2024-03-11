@@ -1,0 +1,17 @@
+---
+- name: Manage services
+  hosts: target_server
+  become: yes
+  tasks:
+    - name: Start service
+      service:
+        name: nginx
+        state: started
+    - name: Stop service
+      service:
+        name: nginx
+        state: stopped
+    - name: Restart service
+      service:
+        name: nginx
+        state: restarted

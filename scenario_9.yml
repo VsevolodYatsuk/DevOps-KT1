@@ -1,0 +1,10 @@
+---
+- name: Replace strings in index.html
+  hosts: target_server
+  become: yes
+  tasks:
+    - name: Replace strings in index.html
+      replace:
+        path: /path/to/index.html
+        regexp: old_string
+        replace: new_string

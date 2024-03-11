@@ -1,0 +1,17 @@
+---
+- name: Configure firewall
+  hosts: target_server
+  become: yes
+  tasks:
+    - name: Allow SSH
+      firewalld:
+        service: ssh
+        permanent: yes
+        state: enabled
+    - name: Allow HTTP
+      firewalld:
+        port: 80/tcp
+        permanent: yes
+        state: enabled
+    - name: Reload firewall
+      command: firewall-cmd --reload

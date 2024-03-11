@@ -1,0 +1,13 @@
+---
+- name: Install and configure PostgreSQL
+  hosts: db_server
+  become: yes
+  tasks:
+    - name: Install PostgreSQL
+      apt:
+        name: postgresql
+        state: present
+    - name: Start PostgreSQL service
+      service:
+        name: postgresql
+        state: started

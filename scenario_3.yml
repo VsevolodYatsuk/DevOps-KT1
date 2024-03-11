@@ -1,0 +1,14 @@
+---
+- name: Update system and reboot if required
+  hosts: target_server
+  become: yes
+  tasks:
+    - name: Update all packages
+      apt:
+        update_cache: yes
+        upgrade: dist
+    - name: Reboot if required
+      command: shutdown -r now
+      async: 0
+      poll: 0
+      when: "'needs_restarting' in ansible_facts.packages | list"

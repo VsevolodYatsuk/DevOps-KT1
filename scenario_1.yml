@@ -1,0 +1,24 @@
+---
+- name: Install and configure Nginx
+  hosts: web_servers
+  become: yes
+  tasks:
+    - name: Install Nginx
+      apt:
+        name: nginx
+        state: present
+    - name: Start Nginx service
+      service:
+        name: nginx
+        state: started
+    - name: Copy custom Nginx configuration
+      copy:
+        src: /path/to/custom/nginx.conf
+        dest: /etc/nginx/nginx.conf
+      notify:
+        - Restart Nginx
+  handlers:
+    - name: Restart Nginx
+      service:
+        name: nginx
+        state: restarted
