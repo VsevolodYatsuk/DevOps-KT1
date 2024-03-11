@@ -1,5 +1,6 @@
 # DevOps-KT1
 
+Сайт для валидации: https://www.yamllint.com/
 
 # Сценарий 1
 ![Сценарий 1](./Resources/scenario_1.jpg)
